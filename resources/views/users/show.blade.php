@@ -3,6 +3,9 @@
 @section('content')
 <div class="container">
   <div class="row justify-content-center">
+    <div class="col-md-8 mb-3 text-right">
+      <a href="{{ url('users') }}">ユーザ一覧 <i class="fas fa-users" class="fa-fw"></i> </a>
+    </div>
     <div class="col-md-8 mb-3">
       <div class="card">
         <div class="d-inline-flex">
@@ -13,6 +16,7 @@
               <h4 class="mb-0 font-weight-bold">{{ $user->name }}</h4>
               <span class="text-secondary">{{ $user->screen_name }}</span>
             </div>
+
           </div>
           <div class="p-3 d-flex flex-column justify-content-between">
             <div class="d-flex">
