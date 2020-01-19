@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Providers\Validator;
 
 class User extends Authenticatable
 {
@@ -69,19 +70,20 @@ class User extends Authenticatable
 
       $this::where('id', $this->id)
         ->update([
-          'screen_name' => $params['screen_name'],
-          'name' => $params['name'],
+          'screen_name'   => $params['screen_name'],
+          'name'          => $params['name'],
           'profile_image' => basename($file_name),
-          'email' => $params['email']
+          'email'         => $params['email'],
         ]);
     } else {
       $this::where('id', $this->id)
         ->update([
-          'screen_name' => $params['screen_name'],
-          'name' => $params['name'],
-          'email' => $params['email']
+          'screen_name'   => $params['screen_name'],
+          'name'          => $params['name'],
+          'email'         => $params['email'],
         ]);
     }
+
     return;
   }
 }
