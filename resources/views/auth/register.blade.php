@@ -82,7 +82,15 @@
               </div>
             </div>
 
-            <div class="form-group row mb-0">
+            <div>
+              <label for="inputImage" class="col-md-4 col-form-label text-md-right">イメージ画像</label>
+
+              <div class="col-md-6">
+                <input id="inputImage" type="file" name="file_image" autocomplete="new-password">
+              </div>
+            </div>
+
+            <div class="form-group row mt-3">
               <div class="col-md-6 offset-md-4">
                 <button type="submit" class="btn btn-primary">
                   {{ __('Register') }}
