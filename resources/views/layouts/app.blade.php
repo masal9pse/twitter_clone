@@ -21,6 +21,7 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <!-- Font Awesome -->
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 
 <body>
