@@ -15,6 +15,7 @@
             <p class="mb-0 text-secondary">{{ $tweet->created_at->format('Y-m-d H:i') }}</p>
           </div>
         </div>
+
         <div class="card-body">
           {!! nl2br(e($tweet->text)) !!}
         </div>
@@ -25,6 +26,7 @@
               aria-expanded="false">
               <i class="fas fa-ellipsis-v fa-fw"></i>
             </a>
+
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <form method="POST" action="{{ url('tweets/' .$tweet->id) }}" class="mb-0">
                 @csrf
@@ -36,12 +38,15 @@
             </div>
           </div>
           @endif
+
+          {{-- コメント機能 --}}
           <div class="mr-3 d-flex align-items-center">
             <a href="{{ url('tweets/' .$tweet->id) }}"><i class="far fa-comment fa-fw"></i></a>
             <p class="mb-0 text-secondary">{{ count($tweet->comments) }}</p>
           </div>
+          {{-- コメント機能ここまで --}}
 
-          <!-- ここから -->
+          <!-- いいね機能 -->
           <div class="d-flex align-items-center">
             @if (!in_array($user->id, array_column($tweet->favorites->toArray(), 'user_id'), TRUE))
             <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
@@ -62,7 +67,7 @@
             @endif
             <p class="mb-0 text-secondary">{{ count($tweet->favorites) }}</p>
           </div>
-          <!-- ここまで -->
+          <!-- いいねここまで -->
 
         </div>
       </div>
