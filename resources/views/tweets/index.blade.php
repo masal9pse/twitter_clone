@@ -14,8 +14,7 @@
           {{-- <img
             src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/439295/59b7a1c8-eb94-110e-c6aa-8f50bac57a31.png"
             class="rounded-circle" width="50" height="50"> --}}
-          <img src="{{ asset('storage/profile_image/' .$timeline->user->profile_image) }}" class="rounded-circle"
-            width="50" height="50">
+          <img src="{{ $timeline->user->profile_image }}" class="rounded-circle" width="50" height="50">
           <div class="ml-2 d-flex flex-column">
             <p class="mb-0">{{ $timeline->user->name }}</p>
             <a href="{{ url('users/' .$timeline->user->id) }}"
