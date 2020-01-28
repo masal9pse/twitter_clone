@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+{{-- ここからが自分自身が投稿したところ --}}
 @section('content')
 <div class="container">
   <div class="row justify-content-center mb-5">
@@ -16,9 +17,12 @@
           </div>
         </div>
 
+        {{-- 自分のツイート内容がここで表示されている --}}
         <div class="card-body">
           {!! nl2br(e($tweet->text)) !!}
         </div>
+
+        {{-- コメントといいねの追加機能 --}}
         <div class="card-footer py-1 d-flex justify-content-end bg-white">
           @if ($tweet->user->id === Auth::user()->id)
           <div class="dropdown mr-3 d-flex align-items-center">
@@ -39,14 +43,14 @@
           </div>
           @endif
 
-          {{-- コメント機能 --}}
+          {{-- 自分が投稿したコメント機能 --}}
           <div class="mr-3 d-flex align-items-center">
             <a href="{{ url('tweets/' .$tweet->id) }}"><i class="far fa-comment fa-fw"></i></a>
             <p class="mb-0 text-secondary">{{ count($tweet->comments) }}</p>
           </div>
           {{-- コメント機能ここまで --}}
 
-          <!-- いいね機能 -->
+          <!-- 自分が投稿したいいね機能 -->
           <div class="d-flex align-items-center">
             @if (!in_array($user->id, array_column($tweet->favorites->toArray(), 'user_id'), TRUE))
             <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
@@ -68,12 +72,14 @@
             <p class="mb-0 text-secondary">{{ count($tweet->favorites) }}</p>
           </div>
           <!-- いいねここまで -->
+          {{-- ここまでが自分が投稿したところ --}}
 
         </div>
       </div>
     </div>
   </div>
 
+  {{-- ここからがツイートに対しての返信機能 --}}
   <div class="row justify-content-center">
     <div class="col-md-8 mb-3">
       <ul class="list-group">
@@ -92,6 +98,61 @@
           </div>
           <div class="py-3">
             {!! nl2br(e($comment->text)) !!}
+            {{-- コメントといいねの追加機能 --}}
+            <div class="card-footer py-1 d-flex justify-content-end bg-white">
+              @if ($tweet->user->id === Auth::user()->id)
+              <div class="dropdown mr-3 d-flex align-items-center">
+                <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
+                  <i class="fas fa-ellipsis-v fa-fw"></i>
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <form method="POST" action="{{ url('tweets/' .$tweet->id) }}" class="mb-0">
+                    @csrf
+                    @method('DELETE')
+
+                    <a href="{{ url('tweets/' .$tweet->id .'/edit') }}" class="dropdown-item">編集</a>
+                    <button type="submit" class="dropdown-item del-btn">削除</button>
+                  </form>
+                </div>
+              </div>
+              @endif
+
+              {{-- 自分が投稿したコメント機能 --}}
+              <div class="mr-3 d-flex align-items-center">
+                <a href="{{ url('tweets/' .$tweet->id) }}"><i class="far fa-comment fa-fw"></i></a>
+                <p class="mb-0 text-secondary">{{ count($tweet->comments) }}</p>
+              </div>
+              {{-- コメント機能ここまで --}}
+
+              <!-- 返信にいいね機能 -->
+              <div class="d-flex align-items-center">
+                @if (!in_array($user->id, array_column($tweet->favorites->toArray(), 'user_id'), TRUE))
+                <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
+                  @csrf
+
+                  <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
+                  <button type="submit" class="btn p-0 border-0 text-primary"><i
+                      class="far fa-heart fa-fw"></i></button>
+                </form>
+                @else
+                <form method="POST"
+                  action="{{ url('favorites/' .array_column($tweet->favorites->toArray(), 'id', 'user_id')[$user->id]) }}"
+                  class="mb-0">
+                  @csrf
+                  @method('DELETE')
+
+                  <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i></button>
+                </form>
+                @endif
+                <p class="mb-0 text-secondary">{{ count($tweet->favorites) }}</p>
+              </div>
+              <!-- いいねここまで -->
+              {{-- ここまでが自分が投稿したところ --}}
+
+            </div>
+
           </div>
         </li>
         @empty
