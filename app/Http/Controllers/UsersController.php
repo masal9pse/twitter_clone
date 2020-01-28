@@ -120,13 +120,13 @@ class UsersController extends Controller
   public function update(Request $request, User $user)
   {
     $data = $request->all();
-    $validator = Validator::make($data, [
-      'screen_name'   => ['required', 'string', 'max:50', Rule::unique('users')->ignore($user->id)],
-      'name'          => ['required', 'string', 'max:255'],
-      'profile_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
-      'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)]
-    ]);
-    $validator->validate();
+    // $validator = Validator::make($data, [
+    //   'screen_name'  => ['required', 'string', 'max:50', Rule::unique('users')->ignore($user->id)],
+    //   'name'          => ['required', 'string', 'max:255'],
+    //   // 'profile_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+    //   'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)]
+    // ]);
+    // $validator->validate();
     $user->updateProfile($data);
 
     return redirect('users/' . $user->id);
