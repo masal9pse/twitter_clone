@@ -96,6 +96,8 @@
               <p class="mb-0 text-secondary">{{ $comment->created_at->format('Y-m-d H:i') }}</p>
             </div>
           </div>
+
+
           <div class="py-3">
             {!! nl2br(e($comment->text)) !!}
             {{-- コメントといいねの追加機能 --}}
@@ -127,7 +129,7 @@
               {{-- コメント機能ここまで --}}
 
               <!-- 返信にいいね機能 -->
-              @include('components.reply_heart')
+              @include('components.reply_like')
             </div>
           </div>
           {{-- ここまでが自分が投稿したところ --}}
