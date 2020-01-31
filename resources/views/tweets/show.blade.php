@@ -2,7 +2,7 @@
 
 {{-- ここからが自分自身が投稿したところ --}}
 @section('content')
-<div class="container">
+<div class="container" id="app">
   <div class="row justify-content-center mb-5">
     <div class="col-md-8 mb-3">
       <div class="card">
@@ -129,7 +129,10 @@
               {{-- コメント機能ここまで --}}
 
               <!-- 返信にいいね機能 -->
-              @include('components.reply_like')
+              {{-- @include('components.reply_like') --}}
+              <span>
+                <reply-like></reply-like>
+              </span>
             </div>
           </div>
           {{-- ここまでが自分が投稿したところ --}}
