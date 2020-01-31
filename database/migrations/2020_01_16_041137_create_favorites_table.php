@@ -27,6 +27,7 @@ class CreateFavoritesTable extends Migration
         'tweet_id'
       ]);
 
+      //foreignメソッドの中身ばそのテーブルのカラム
       $table->foreign('user_id')
         ->references('id')
         ->on('users')
