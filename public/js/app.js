@@ -1752,14 +1752,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addLike: function addLike() {
-      document.addEventListener("DOMContentLoaded", function (event) {
-        // 元々記述のあった処理をaddEventListenerのカッコで挟む
-        if (this.count === 0) {
-          this.count++;
-        } else {
-          this.count--;
-        }
-      });
+      // 元々記述のあった処理をaddEventListenerのカッコで挟む
+      if (this.count === 0) {
+        this.count++;
+      } else {
+        this.count--;
+      }
     }
   }
 });

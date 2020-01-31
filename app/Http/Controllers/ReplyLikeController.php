@@ -3,59 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ReplyLike;
 
 class ReplyLikeController extends Controller
 {
-  public static function getIine(request $request)
+  public function like(ReplyLike $replyLike, request $request)
   {
-    $model = new Iine;
+    $like = Like::create(['post_id' => $replyLike->id, 'user_id' => $request->user_id]);
 
-    $model->foreign_key = $request->foreign_key;
-    $model->user_id = $request->user_id;
-    $model->model = $request->model;
+    $likeCount = count(Like::where('post_id', $replyLike->id)->get());
 
-
-    $tmp = $model
-      ->select('id')
-      ->first();
-
-    //要素の存在チェック bool
-    if (!empty($tmp->id)) {
-      $res = true;
-    } else {
-      $res = false;
-    }
-
-    return response()->json(['res' => $res]);
+    return response()->json(['likeCount' => $likeCount]);
   }
 
   //いいねを追加
-  public static function addIine(request $request)
+  public function unlike(ReplyLike $replyLike, Request $request)
   {
-    $model = new Iine;
+    $like = Like::where('user_id', $request->user_id)->where('post_id', $replyLike->id)->first();
+    $like->delete();
 
-    $model->foreign_key = $request->foreign_key;
-    $model->user_id = $request->user_id;
-    $model->model = $request->model;
+    $likeCount = count(Like::where('post_id', $replyLike->id)->get());
 
-
-
-    $tmp = $model
-      ->select('id')
-      ->first();
-
-
-    //要素の存在チェック bool
-    if (!empty($tmp->id)) {
-      $res = false;
-      $model
-        ->where('id', $tmp->id)
-        ->delete(); //削除
-    } else {
-      $res = true;
-      $model->save();
-    }
-
-    return response()->json(['res' => $res]);
+    return response()->json(['likeCount' => $likeCount]);
   }
 }
