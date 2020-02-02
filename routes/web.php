@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
   Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
@@ -35,3 +35,5 @@ Route::group(['middleware' => 'auth'], function () {
 
   Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
 });
+
+Route::resource('posts', 'PostController')->except('index');
