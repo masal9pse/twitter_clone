@@ -59,10 +59,10 @@ class PostController extends Controller
   // 詳細表示
   public function show(Post $post)
   {
-    dd($post);
-    // return view('posts.show', [
-    //   'id' => $id
-    // ]);
+    // dd($post);
+    return view('posts.show', [
+      'post' => $post
+    ]);
   }
 
   /**
