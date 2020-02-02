@@ -7,6 +7,9 @@
       <a href="{{ url('users') }}">ユーザ一覧 <i class="fas fa-users" class="fa-fw"></i> </a>
       <a href="{{ route('posts.create') }}" class="ml-3">postルートへ<i class="fas fa-users" class="fa-fw"></i></a>
     </div>
+
+    <example-component></example-component>
+
     @if (isset($timelines))
     @foreach ($timelines as $timeline)
     <div class="col-md-8 mb-3">

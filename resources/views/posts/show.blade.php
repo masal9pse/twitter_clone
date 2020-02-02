@@ -15,6 +15,7 @@
           @endif
 
           {{ $post->content }}
+          <example-component></example-component>
         </div>
       </div>
     </div>
