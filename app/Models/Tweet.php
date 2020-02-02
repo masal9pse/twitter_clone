@@ -18,6 +18,7 @@ class Tweet extends Model
     'text'
   ];
 
+  // TweetsTableとUsersTableを紐づける
   public function user()
   {
     return $this->belongsTo(User::class);
@@ -28,6 +29,7 @@ class Tweet extends Model
     return $this->hasMany(Favorite::class);
   }
 
+  // TweeetsTableとcommentsTableを紐づける。
   public function comments()
   {
     return $this->hasMany(Comment::class);
