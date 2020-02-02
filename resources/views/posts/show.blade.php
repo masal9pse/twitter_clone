@@ -16,6 +16,7 @@
 
           {{ $post->content }}
           <example-component></example-component>
+          <like></like>
         </div>
       </div>
     </div>
