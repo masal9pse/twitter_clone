@@ -45,6 +45,7 @@
           <!-- Right Side Of Navbar -->
           <ul class="navbar-nav ml-auto align-items-center">
             <!-- Authentication Links -->
+            {{-- ログインしていない時 --}}
             @guest
             <li class="nav-item">
               <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -54,11 +55,17 @@
               <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
             </li>
             @endif
+            {{-- ログインしているとき --}}
             @else
             <!-- 追加 -->
             <li class="nav-item mr-5">
               <a href="{{ url('tweets/create') }}" class="btn btn-md btn-primary">ツイートする</a>
+              <a class="dropdown-item" href="{{ route('posts.create') }}">
+                post create
+              </a>
             </li>
+
+
             <li class="nav-item">
               <img src="{{ auth()->user()->profile_image }}" class="rounded-circle" width="50" height="50">
             </li>
@@ -72,6 +79,7 @@
                 <a href="{{ url('users/' .auth()->user()->id) }}" class="dropdown-item">
                   プロフィール
                 </a>
+
                 <a href="{{ route('logout') }}" class="dropdown-item"
                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                   {{ __('Logout') }}
