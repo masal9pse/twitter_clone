@@ -13,8 +13,17 @@
             {{ session('status') }}
           </div>
           @endif
+          <form action="{{ route('posts.store') }}" method="post">
+            {{ csrf_field() }}
 
-          You are logged in!
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Example textarea</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+
         </div>
       </div>
     </div>
