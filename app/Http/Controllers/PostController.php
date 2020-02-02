@@ -12,9 +12,13 @@ class PostController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
+  // 一覧表示
   public function index()
   {
-    return view('posts.index');
+    $posts = Post::all();
+    return view('posts.index', [
+      'posts' => $posts
+    ]);
   }
 
   /**
@@ -35,12 +39,14 @@ class PostController extends Controller
    */
   public function store(Request $request)
   {
+    //　インスタンス作成時は、save()を使う
     $post = new Post;
 
     $post->content = $request->content;
     $post->user_id =  \Auth::user()->id;
     $post->save();
-    dd($post);
+
+    return redirect('/');
   }
 
   /**
