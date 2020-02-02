@@ -13,7 +13,29 @@
             {{ session('status') }}
           </div>
           @endif
-          <?php dd($posts); ?>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">Content</th>
+                {{-- <th scope="col">Like</th> --}}
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($posts as $post)
+              <tr>
+                <th scope="row">
+                  <a href="{{ route('posts.show', $post->id) }}">
+                    {{ $post->id }}
+                  </a>
+                </th>
+                <td>{{ $post->content }}</td>
+                <td>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

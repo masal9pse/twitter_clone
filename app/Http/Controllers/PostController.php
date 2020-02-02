@@ -37,6 +37,7 @@ class PostController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
+  // データの新規登録
   public function store(Request $request)
   {
     //　インスタンス作成時は、save()を使う
@@ -55,9 +56,12 @@ class PostController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
+  // 詳細表示
   public function show($id)
   {
-    //
+    return view('posts.show', [
+      'id' => $id
+    ]);
   }
 
   /**
@@ -68,7 +72,6 @@ class PostController extends Controller
    */
   public function edit($id)
   {
-    //
   }
 
   /**
