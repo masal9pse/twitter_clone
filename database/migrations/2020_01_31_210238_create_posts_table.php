@@ -16,8 +16,10 @@ class CreatePostsTable extends Migration
     Schema::create('posts', function (Blueprint $table) {
       $table->increments('id');
       $table->integer('user_id')->unsigned()->index();
-      //　親がusersTable
       $table->string('content')->nullable();
+
+
+      //　親がusersTable
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
       $table->timestamps();
     });

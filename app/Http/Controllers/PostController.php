@@ -35,7 +35,9 @@ class PostController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $id = \Auth::user()->id; //ログインしているユーザのid番号を取得する
+    // $id = \Auth::post()->content; //エラー
+    dd($id); //それを表示する
   }
 
   /**
