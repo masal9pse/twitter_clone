@@ -57,11 +57,12 @@ class PostController extends Controller
    * @return \Illuminate\Http\Response
    */
   // 詳細表示
-  public function show($id)
+  public function show(Post $post)
   {
-    return view('posts.show', [
-      'id' => $id
-    ]);
+    dd($post);
+    // return view('posts.show', [
+    //   'id' => $id
+    // ]);
   }
 
   /**
