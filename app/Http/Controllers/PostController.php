@@ -39,6 +39,7 @@ class PostController extends Controller
 
     $post->content = $request->content;
     $post->user_id =  \Auth::user()->id;
+    $post->save();
     dd($post);
   }
 
