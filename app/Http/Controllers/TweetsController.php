@@ -18,7 +18,7 @@ class TweetsController extends Controller
   public function index(Tweet $tweet, Follower $follower)
   {
     $user = auth()->user();
-    $follow_ids = $follower->followingIds($user['id']);
+    $follow_ids = $follower->followingIds($user->id);
     // print_r($follow_ids);
     $following_ids = $follow_ids->pluck('followed_id')->toArray();
 
