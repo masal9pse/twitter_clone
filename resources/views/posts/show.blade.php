@@ -15,8 +15,8 @@
           @endif
 
           {{ $post->content }}
-          <example-component></example-component>
-          <like></like>
+          {{-- likeTableに必要なのは、user_id,post_idカラムが必要 --}}
+          <like :post-id={{ json_encode($post->id) }}></like>
         </div>
       </div>
     </div>

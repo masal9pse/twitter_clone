@@ -1,10 +1,14 @@
 <template>
-  <p>テストだよ</p>
+  <div class="container">
+    <button type="submit" class="btn btn-primary">Like</button>
+  </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["post-id"],
+  mounted() {
+    console.log("Component mounted.");
+  }
+};
 </script>
-
-<style>
-</style>
