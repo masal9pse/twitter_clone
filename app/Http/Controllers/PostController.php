@@ -59,9 +59,10 @@ class PostController extends Controller
   // 詳細表示
   public function show(Post $post)
   {
-    // dd($post);
+    $userAuth = \Auth::user(); //認証しているuserTableのid、routeでshowviewのみでしか定義していないので、showviewしか使えない。
     return view('posts.show', [
-      'post' => $post
+      'post' => $post,
+      'userAuth' => $userAuth
     ]);
   }
 

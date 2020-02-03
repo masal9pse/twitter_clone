@@ -4,15 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Redis;
 
 class LikeController extends Controller
 {
-  public function like(Post $post)
+  public function like(Post $post, Request $request)
   {
-    // 'post_id = 認証しているuserTableのidと紐づける。
-    // user_id = コメントした（postTable）idと紐づける。
-    // これでDBにいいねした値を突っ込める
-    // dd(\Auth::user());
+    dd($request->user_id);
     $like = Like::create(['post_id' => \Auth::user()->id, 'user_id' => $post->id]);
 
     return response()->json([]);

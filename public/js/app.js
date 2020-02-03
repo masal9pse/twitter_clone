@@ -1735,11 +1735,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["postId"],
+  props: ["postId", "userId"],
   methods: {
     submit: function submit(postId) {
       var url = "/api/posts/".concat(postId, "/like");
-      axios.post(url).then(function (response) {// console.log(url);
+      axios.post(url, {
+        user_id: this.userId
+      }).then(function (response) {// console.log(url);
       })["catch"](function (error) {
         alert(error);
       });
