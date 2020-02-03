@@ -16,7 +16,8 @@
 
           {{ $post->content }}
 
-          <like :post-id={{ json_encode($post->id) }} :user-id={{ json_encode($userAuth->id) }}></like>
+          <like :post-id="{{ json_encode($post->id) }}" :user-id="{{ json_encode($userAuth->id) }}"
+            :default-Liked="{{ json_encode($defaultLiked) }}"></like>
         </div>
       </div>
     </div>

@@ -1734,8 +1734,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["postId", "userId"],
+  props: ["postId", "userId", "defaultLiked"],
+  data: function data() {
+    return {
+      liked: false
+    };
+  },
+  created: function created() {
+    this.liked = this.defaultLiked;
+  },
   methods: {
     submit: function submit(postId) {
       var url = "/api/posts/".concat(postId, "/like");
@@ -37189,19 +37198,33 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c(
-      "button",
-      {
-        staticClass: "btn btn-danger",
-        attrs: { type: "button" },
-        on: {
-          click: function($event) {
-            return _vm.submit(_vm.postId)
-          }
-        }
-      },
-      [_vm._v("like")]
-    )
+    !_vm.liked
+      ? _c(
+          "button",
+          {
+            staticClass: "btn btn-success",
+            attrs: { type: "button" },
+            on: {
+              click: function($event) {
+                return _vm.submit(_vm.postId)
+              }
+            }
+          },
+          [_vm._v("like")]
+        )
+      : _c(
+          "button",
+          {
+            staticClass: "btn btn-success",
+            attrs: { type: "button" },
+            on: {
+              click: function($event) {
+                return _vm.submit(_vm.postId)
+              }
+            }
+          },
+          [_vm._v("liked")]
+        )
   ])
 }
 var staticRenderFns = []

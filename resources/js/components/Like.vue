@@ -1,12 +1,21 @@
 <template>
   <div class="container">
-    <button type="button" class="btn btn-danger" @click="submit(postId)">like</button>
+    <button v-if="!liked" type="button" class="btn btn-success" @click="submit(postId)">like</button>
+    <button v-else type="button" class="btn btn-success" @click="submit(postId)">liked</button>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["postId", "userId"],
+  props: ["postId", "userId", "defaultLiked"],
+  data() {
+    return {
+      liked: false
+    };
+  },
+  created() {
+    this.liked = this.defaultLiked;
+  },
   methods: {
     submit(postId) {
       let url = `/api/posts/${postId}/like`;

@@ -60,9 +60,20 @@ class PostController extends Controller
   public function show(Post $post)
   {
     $userAuth = \Auth::user();
+    $post->load('likes');
+    $defaultLiked = $post->likes->where('user_id', $userAuth->id)->first();
+    if (is_countable($defaultLiked)) {
+      if (count($defaultLiked) == 0) {
+        $defaultLiked == false;
+      } else {
+        $defaultLiked == true;
+      }
+    }
+
     return view('posts.show', [
       'post' => $post,
-      'userAuth' => $userAuth
+      'userAuth' => $userAuth,
+      'defaultLiked' => $defaultLiked
     ]);
   }
 
