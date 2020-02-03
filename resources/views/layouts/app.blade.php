@@ -22,6 +22,8 @@
   <!-- Font Awesome -->
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  {{-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script> --}}
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
