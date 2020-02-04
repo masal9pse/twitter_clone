@@ -18,19 +18,22 @@
               <tr>
                 <th scope="col">id</th>
                 <th scope="col">Content</th>
-                {{-- <th scope="col">Like</th> --}}
+                <th scope="col">Like</th>
               </tr>
             </thead>
             <tbody>
               @foreach($posts as $post)
               <tr>
                 <th scope="row">
-                  <a href="{{ route('posts.show', $post->id) }}">
-                    {{ $post->id }}
+                  <a href="{{ route('posts.show', $post['id']) }}">
+                    {{ $post['id'] }}
                   </a>
                 </th>
-                <td>{{ $post->content }}</td>
+                <td>{{ $post['content'] }}</td>
                 <td>
+                  <like :post-id="{{ json_encode($post['id']) }}" :user-id="{{ json_encode($userAuth->id) }}"
+                    :default-Liked="{{ json_encode(\App\Models\Post::defaultLiked($post, $userAuth->id)) }}"
+                    :default-Count="{{ json_encode(count($post['likes'])) }}"></like>
                 </td>
               </tr>
               @endforeach

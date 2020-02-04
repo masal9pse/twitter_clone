@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Like;
 
 class PostController extends Controller
 {
@@ -15,9 +16,22 @@ class PostController extends Controller
   // 一覧表示
   public function index()
   {
+    $userAuth = \Auth::user();
     $posts = Post::all();
+    $posts->load('likes');
+
+    $posts = $posts->toArray();
+    $sort = [];
+
+    foreach ($posts as $key => $post) {
+      $sort['key'] = $post['likes'];
+    }
+
+    array_multisort($sort, SORT_DESC, $posts);
+
     return view('posts.index', [
-      'posts' => $posts
+      'posts' => $posts,
+      'userAuth' => $userAuth
     ]);
   }
 
