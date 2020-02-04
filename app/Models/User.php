@@ -24,6 +24,15 @@ class User extends Authenticatable
     'password'
   ];
 
+  protected $hidden = [
+    'password', 'remember_token',
+  ];
+
+  public function likes()
+  {
+    return $this->hasMany('App\Models\Like', 'user_id', 'id');
+  }
+
 
   public function followers()
   {

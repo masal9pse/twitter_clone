@@ -24,7 +24,7 @@ class PostController extends Controller
     $sort = [];
 
     foreach ($posts as $key => $post) {
-      $sort['key'] = $post['likes'];
+      $sort[$key] = $post['likes'];
     }
 
     array_multisort($sort, SORT_DESC, $posts);
