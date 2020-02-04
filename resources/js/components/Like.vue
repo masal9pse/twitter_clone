@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <button v-if="!liked" type="button" class="btn btn-success" @click="like(postId)">like</button>
-    <button v-else type="button" class="btn btn-success" @click="like(postId)">liked</button>
+    <button v-else type="button" class="btn btn-success" @click="unlike(postId)">liked</button>
   </div>
 </template>
 
@@ -10,7 +10,7 @@ export default {
   props: ["postId", "userId", "defaultLiked"],
   data() {
     return {
-      liked: false
+      liked: false //v-ifのところ
     };
   },
   created() {
@@ -25,7 +25,21 @@ export default {
           user_id: this.userId
         })
         .then(response => {
-          // console.log(url);
+          this.liked = true; //v-ifのところ
+        })
+        .catch(error => {
+          alert(error);
+        });
+    },
+    unlike(postId) {
+      let url = `/api/posts/${postId}/unlike`;
+
+      axios
+        .post(url, {
+          user_id: this.userId
+        })
+        .then(response => {
+          this.liked = false;
         })
         .catch(error => {
           alert(error);

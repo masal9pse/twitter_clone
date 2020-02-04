@@ -1739,7 +1739,8 @@ __webpack_require__.r(__webpack_exports__);
   props: ["postId", "userId", "defaultLiked"],
   data: function data() {
     return {
-      liked: false
+      liked: false //v-ifのところ
+
     };
   },
   created: function created() {
@@ -1747,10 +1748,25 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     like: function like(postId) {
+      var _this = this;
+
       var url = "/api/posts/".concat(postId, "/like");
       axios.post(url, {
         user_id: this.userId
-      }).then(function (response) {// console.log(url);
+      }).then(function (response) {
+        _this.liked = true; //v-ifのところ
+      })["catch"](function (error) {
+        alert(error);
+      });
+    },
+    unlike: function unlike(postId) {
+      var _this2 = this;
+
+      var url = "/api/posts/".concat(postId, "/unlike");
+      axios.post(url, {
+        user_id: this.userId
+      }).then(function (response) {
+        _this2.liked = false;
       })["catch"](function (error) {
         alert(error);
       });
@@ -37219,7 +37235,7 @@ var render = function() {
             attrs: { type: "button" },
             on: {
               click: function($event) {
-                return _vm.like(_vm.postId)
+                return _vm.unlike(_vm.postId)
               }
             }
           },

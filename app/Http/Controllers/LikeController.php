@@ -17,4 +17,12 @@ class LikeController extends Controller
 
     return response()->json([]);
   }
+
+  public function unlike(Post $post, Request $request)
+  {
+    $like = Like::where('user_id', $request->user_id)->where('post_id', $post->id)->first();
+    $like->delete();
+
+    return response()->json([]);
+  }
 }
