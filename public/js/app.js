@@ -1746,7 +1746,7 @@ __webpack_require__.r(__webpack_exports__);
     this.liked = this.defaultLiked;
   },
   methods: {
-    submit: function submit(postId) {
+    like: function like(postId) {
       var url = "/api/posts/".concat(postId, "/like");
       axios.post(url, {
         user_id: this.userId
@@ -37206,7 +37206,7 @@ var render = function() {
             attrs: { type: "button" },
             on: {
               click: function($event) {
-                return _vm.submit(_vm.postId)
+                return _vm.like(_vm.postId)
               }
             }
           },
@@ -37219,7 +37219,7 @@ var render = function() {
             attrs: { type: "button" },
             on: {
               click: function($event) {
-                return _vm.submit(_vm.postId)
+                return _vm.like(_vm.postId)
               }
             }
           },

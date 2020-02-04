@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <button v-if="!liked" type="button" class="btn btn-success" @click="submit(postId)">like</button>
-    <button v-else type="button" class="btn btn-success" @click="submit(postId)">liked</button>
+    <button v-if="!liked" type="button" class="btn btn-success" @click="like(postId)">like</button>
+    <button v-else type="button" class="btn btn-success" @click="like(postId)">liked</button>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
     this.liked = this.defaultLiked;
   },
   methods: {
-    submit(postId) {
+    like(postId) {
       let url = `/api/posts/${postId}/like`;
 
       axios
