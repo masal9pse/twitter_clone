@@ -17,7 +17,7 @@
 
 Auth::routes();
 
-Route::get('/', 'PostController@index')->name('posts.index');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
   Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
