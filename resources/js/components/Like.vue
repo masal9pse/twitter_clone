@@ -1,7 +1,11 @@
 <template>
   <div class="container">
-    <button v-if="!liked" type="button" class="btn btn-success" @click="like(postId)">like</button>
-    <button v-else type="button" class="btn btn-success" @click="unlike(postId)">liked</button>
+    <button v-if="!liked" type="button" class="btn p-0 border-0 text-primary" @click="like(postId)">
+      <i class="far fa-heart fa-fw"></i>
+    </button>
+    <button v-else type="button" class="btn p-0 border-0 text-danger" @click="unlike(postId)">
+      <i class="fas fa-heart fa-fw"></i>
+    </button>
   </div>
 </template>
 

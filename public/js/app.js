@@ -1735,6 +1735,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["postId", "userId", "defaultLiked"],
   data: function data() {
@@ -37218,7 +37222,7 @@ var render = function() {
       ? _c(
           "button",
           {
-            staticClass: "btn btn-success",
+            staticClass: "btn p-0 border-0 text-primary",
             attrs: { type: "button" },
             on: {
               click: function($event) {
@@ -37226,12 +37230,12 @@ var render = function() {
               }
             }
           },
-          [_vm._v("like")]
+          [_c("i", { staticClass: "far fa-heart fa-fw" })]
         )
       : _c(
           "button",
           {
-            staticClass: "btn btn-success",
+            staticClass: "btn p-0 border-0 text-danger",
             attrs: { type: "button" },
             on: {
               click: function($event) {
@@ -37239,7 +37243,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("liked")]
+          [_c("i", { staticClass: "fas fa-heart fa-fw" })]
         )
   ])
 }
