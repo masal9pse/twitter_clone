@@ -131,7 +131,9 @@
               <!-- 返信にいいね機能 -->
               {{-- @include('components.reply_like') --}}
               <span>
-                <reply-like></reply-like>
+                {{-- <like :post-id="{{ json_encode($post->id) }}" :user-id="{{ json_encode($userAuth->id) }}"
+                :default-Liked="{{ json_encode($defaultLiked) }}" :default-Count="{{ json_encode($defaultCount) }}">
+                </like> --}}
               </span>
             </div>
           </div>

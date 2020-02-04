@@ -8,7 +8,7 @@
       <a href="{{ route('posts.index') }}" class="ml-3">post一覧へ<i class="fas fa-users" class="fa-fw"></i></a>
     </div>
 
-    <example-component></example-component>
+    {{-- <example-component></example-component> --}}
 
     @if (isset($timelines))
     @foreach ($timelines as $timeline)
