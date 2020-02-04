@@ -15,7 +15,9 @@ class LikeController extends Controller
     // post_idはコメントの番号
     $like = Like::create(['user_id' => $request->user_id, 'post_id' => $post->id]);
 
-    return response()->json([]);
+    $likeCount = count(Like::where('post_id', $post->id)->get());
+
+    return response()->json(['likeCount' => $likeCount]);
   }
 
   public function unlike(Post $post, Request $request)
@@ -23,6 +25,8 @@ class LikeController extends Controller
     $like = Like::where('user_id', $request->user_id)->where('post_id', $post->id)->first();
     $like->delete();
 
-    return response()->json([]);
+    $likeCount = count(Like::where('post_id', $post->id)->get());
+
+    return response()->json(['likeCount' => $likeCount]);
   }
 }

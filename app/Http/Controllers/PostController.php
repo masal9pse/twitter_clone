@@ -61,6 +61,8 @@ class PostController extends Controller
   {
     $userAuth = \Auth::user();
     $post->load('likes');
+
+    $defaultCount = count($post->likes);
     $defaultLiked = $post->likes->where('user_id', $userAuth->id)->first();
     if (is_countable($defaultLiked)) {
       if (count($defaultLiked) == 0) {
@@ -73,7 +75,8 @@ class PostController extends Controller
     return view('posts.show', [
       'post' => $post,
       'userAuth' => $userAuth,
-      'defaultLiked' => $defaultLiked
+      'defaultLiked' => $defaultLiked,
+      'defaultCount' => $defaultCount
     ]);
   }
 
