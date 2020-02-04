@@ -5,6 +5,11 @@
 <div class="container" id="app">
   <div class="row justify-content-center mb-5">
     <div class="col-md-8 mb-3">
+      <div class="col-md-8 mb-3 text-right">
+        <a href="{{ url('users') }}">ユーザ一覧 <i class="fas fa-users" class="fa-fw"></i> </a>
+        <a href="{{ route('posts.index') }}" class="ml-3">post一覧へ<i class="fas fa-users" class="fa-fw"></i></a>
+      </div>
+
       <div class="card">
         <div class="card-haeder p-3 w-100 d-flex">
           <img src="{{ $tweet->user->profile_image }}" class="rounded-circle" width="50" height="50">
