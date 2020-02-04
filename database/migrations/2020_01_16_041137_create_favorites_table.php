@@ -27,11 +27,12 @@ class CreateFavoritesTable extends Migration
         'tweet_id'
       ]);
 
+      //foreignメソッドの中身ばそのテーブルのカラム
       $table->foreign('user_id')
         ->references('id')
         ->on('users')
         ->onDelete('cascade')
-        ->onUpdate('cascade');
+        ->onUpdate('cascade'); //親テーブルのusersTableが更新、削除されると、favorites.user_idも更新、削除される
 
       $table->foreign('tweet_id')
         ->references('id')

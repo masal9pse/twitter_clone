@@ -11,6 +11,8 @@ class Favorite extends Model
   //いいねの判定
   public function isFavorite(Int $user_id, Int $tweet_id)
   {
+    // キャスト
+    // $this = FavoriteTabele
     return (bool) $this->where('user_id', $user_id)->where('tweet_id', $tweet_id)->first();
   }
 

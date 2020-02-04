@@ -11,6 +11,7 @@ class CreateCommentsTable extends Migration
    *
    * @return void
    */
+  // ツイートへの返信を担当
   public function up()
   {
     Schema::create('comments', function (Blueprint $table) {
@@ -18,9 +19,10 @@ class CreateCommentsTable extends Migration
       $table->unsignedInteger('user_id')->comment('ユーザID');
       $table->unsignedInteger('tweet_id')->comment('ツイートID');
       $table->string('text')->comment('本文');
-      $table->softDeletes();
+      $table->softDeletes(); //add deleted_at
       $table->timestamps();
 
+      // what is index()?
       $table->index('id');
       $table->index('user_id');
       $table->index('tweet_id');

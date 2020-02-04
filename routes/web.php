@@ -10,14 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-  return view('welcome');
-});
+// ここから動画通り
+// Route::get('/', function () {
+//   return view('welcome');
+// });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'PostController@index')->name('posts.index');
 
 Route::group(['middleware' => 'auth'], function () {
   Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
@@ -34,4 +34,6 @@ Route::group(['middleware' => 'auth'], function () {
   Route::resource('comments', 'CommentsController', ['only' => ['store']]);
 
   Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
+
+  Route::resource('posts', 'PostController')->except('index');
 });

@@ -37,7 +37,7 @@ class User extends Authenticatable
 
   public function getAllUsers(Int $user_id)
   {
-    return $this->Where('id', '<>', $user_id)->paginate(5);
+    return $this->where('id', '<>', $user_id)->paginate(5);
   }
 
   public function follow(Int $user_id)

@@ -62,6 +62,7 @@
         </div>
       </div>
     </div>
+    <example-component></example-component>
 
     @if (isset($timelines))
     @foreach ($timelines as $timeline)

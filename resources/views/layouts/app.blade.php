@@ -11,7 +11,7 @@
   <title>{{ config('app.name', 'Laravel') }}</title>
 
   <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/app.js') }}" defer></script>
 
   <!-- Fonts -->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,6 +21,9 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <!-- Font Awesome -->
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  {{-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script> --}}
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -44,6 +47,7 @@
           <!-- Right Side Of Navbar -->
           <ul class="navbar-nav ml-auto align-items-center">
             <!-- Authentication Links -->
+            {{-- ログインしていない時 --}}
             @guest
             <li class="nav-item">
               <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -53,11 +57,17 @@
               <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
             </li>
             @endif
+            {{-- ログインしているとき --}}
             @else
             <!-- 追加 -->
             <li class="nav-item mr-5">
               <a href="{{ url('tweets/create') }}" class="btn btn-md btn-primary">ツイートする</a>
+              <a class="dropdown-item" href="{{ route('posts.create') }}">
+                post create
+              </a>
             </li>
+
+
             <li class="nav-item">
               <img src="{{ auth()->user()->profile_image }}" class="rounded-circle" width="50" height="50">
             </li>
@@ -68,9 +78,12 @@
               </a>
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a href="{{ url('users/' .auth()->user()->id) }}" class="dropdown-item">プロフィール</a>
-                <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
+                <a href="{{ url('users/' .auth()->user()->id) }}" class="dropdown-item">
+                  プロフィール
+                </a>
+
+                <a href="{{ route('logout') }}" class="dropdown-item"
+                  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                   {{ __('Logout') }}
                 </a>
 

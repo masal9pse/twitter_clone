@@ -2,7 +2,7 @@
 
 {{-- ここからが自分自身が投稿したところ --}}
 @section('content')
-<div class="container">
+<div class="container" id="app">
   <div class="row justify-content-center mb-5">
     <div class="col-md-8 mb-3">
       <div class="card">
@@ -96,6 +96,8 @@
               <p class="mb-0 text-secondary">{{ $comment->created_at->format('Y-m-d H:i') }}</p>
             </div>
           </div>
+
+
           <div class="py-3">
             {!! nl2br(e($comment->text)) !!}
             {{-- コメントといいねの追加機能 --}}
@@ -127,33 +129,14 @@
               {{-- コメント機能ここまで --}}
 
               <!-- 返信にいいね機能 -->
-              <div class="d-flex align-items-center">
-                @if (!in_array($user->id, array_column($tweet->favorites->toArray(), 'user_id'), TRUE))
-                <form method="POST" action="{{ url('favorites/') }}" class="mb-0">
-                  @csrf
-
-                  <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
-                  <button type="submit" class="btn p-0 border-0 text-primary"><i
-                      class="far fa-heart fa-fw"></i></button>
-                </form>
-                @else
-                <form method="POST"
-                  action="{{ url('favorites/' .array_column($tweet->favorites->toArray(), 'id', 'user_id')[$user->id]) }}"
-                  class="mb-0">
-                  @csrf
-                  @method('DELETE')
-
-                  <button type="submit" class="btn p-0 border-0 text-danger"><i class="fas fa-heart fa-fw"></i></button>
-                </form>
-                @endif
-                <p class="mb-0 text-secondary">{{ count($tweet->favorites) }}</p>
-              </div>
-              <!-- いいねここまで -->
-              {{-- ここまでが自分が投稿したところ --}}
-
+              {{-- @include('components.reply_like') --}}
+              <span>
+                <reply-like></reply-like>
+              </span>
             </div>
-
           </div>
+          {{-- ここまでが自分が投稿したところ --}}
+
         </li>
         @empty
         <li class="list-group-item">
