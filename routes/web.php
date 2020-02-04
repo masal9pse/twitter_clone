@@ -10,24 +10,25 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// ここから動画通り
 // Route::get('/', function () {
 //   return view('welcome');
 // });
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
   Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
 });
 
 Route::group(['middleware' => 'auth'], function () {
+
+  Route::get('/', 'TweetsController@index')->name('tweets.index');
+
   Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
 
   Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
-  Route::delete('users/{user}/unfollow', 'UserController@unfollow')->name('unfollow');
+  Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
 
   Route::resource('tweets', 'TweetsController', ['only' => ['index',   'create', 'store', 'show', 'edit', 'update', 'destroy']]);
 
@@ -35,5 +36,5 @@ Route::group(['middleware' => 'auth'], function () {
 
   Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
 
-  Route::resource('posts', 'PostController')->except('index');
+  Route::resource('posts', 'PostController', ['only' => ['index', 'create', 'store', 'show']]);
 });
