@@ -1743,8 +1743,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ["postId", "userId", "defaultLiked"],
   data: function data() {
     return {
-      liked: false //v-ifのところ
-
+      liked: false
     };
   },
   created: function created() {

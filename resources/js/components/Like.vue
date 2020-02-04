@@ -14,7 +14,7 @@ export default {
   props: ["postId", "userId", "defaultLiked"],
   data() {
     return {
-      liked: false //v-ifのところ
+      liked: false
     };
   },
   created() {
