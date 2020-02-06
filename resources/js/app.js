@@ -30,6 +30,7 @@ if (token) {
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('like', require('./components/Like.vue').default);
+Vue.component('heart', require('./components/Heart.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
