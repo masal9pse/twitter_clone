@@ -10,13 +10,15 @@ class Heart extends Model
     'id', 'user_id', 'tweet_id'
   ];
 
+  // 受け取っている
   public function tweet()
   {
-    return $this->belongsTo(\App\Models\Comment::class, 'tweet_id', 'id');
+    return $this->belongsTo(Tweet::class, 'tweet_id', 'id');
   }
-
   public function user()
   {
-    return $this->belongsTo(\App\Models\User::class, 'user_id', 'id');
+    return $this->belongsTo(User::class, 'user_id', 'id');
   }
 }
+
+// 住所テーブルのモデルを取ってこれる。

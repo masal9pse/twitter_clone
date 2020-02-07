@@ -33,6 +33,12 @@ class User extends Authenticatable
     return $this->hasMany('App\Models\Like', 'user_id', 'id');
   }
 
+  public function heart()
+  {
+    return $this->hasMany('App\Models\Heart', 'user_id', 'id');
+  }
+
+
 
   public function followers()
   {

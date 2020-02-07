@@ -19,7 +19,7 @@ class CreateHeartsTable extends Migration
       $table->integer('tweet_id')->unsigned()->index();
 
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-      $table->foreign('tweet_id')->references('id')->on('comments')->onDelete('cascade');
+      $table->foreign('tweet_id')->references('id')->on('tweets')->onDelete('cascade');
       $table->timestamps();
     });
   }

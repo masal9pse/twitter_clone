@@ -183,6 +183,12 @@
                 </div>
               </div>
             </form>
+
+            {{ $tweet->hearts }}
+
+            {{-- {{ $heartCount }} --}}
+            {{-- {{ $comment->text }} --}}
+            {{-- {{$user->id}} --}}
           </div>
         </li>
       </ul>

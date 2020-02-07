@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Tweet;
 use App\Models\Comment;
 use App\Models\Follower;
+use App\Models\Heart;
 
 class TweetsController extends Controller
 {
@@ -63,16 +64,37 @@ class TweetsController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function show(Tweet $tweet, Comment $comment)
+  // 恐らくここに返信に対してのいいねの処理を書けばいいはず
+  public function show(Tweet $tweet, Comment $comment, Heart $heart)
   {
     $user = auth()->user();
     $tweet = $tweet->getTweet($tweet->id);
     $comments = $comment->getComments($tweet->id);
 
+    $userAuth = \Auth::user();
+    // $heart->hearts;
+    // $heart->load('heart');
+
+    // heartsにするとエラー,アロー演算子の中身はカラム以外に何を表しているのか？
+    // modelのメソッド
+    $defaultCount = count($tweet->heart);
+    $defaultLiked = $tweet->heart->where('user_id', $userAuth->id)->first();
+    if (is_countable($defaultLiked)) {
+      if (count($defaultLiked) == 0) {
+        $defaultLiked == false;
+      } else {
+        $defaultLiked == true;
+      }
+    }
+
     return view('tweets.show', [
       'user'     => $user,
       'tweet' => $tweet,
-      'comments' => $comments
+      'heart' => $heart,
+      'comments' => $comments,
+      'userAuth' => $userAuth,
+      'defaultLiked' => $defaultLiked,
+      'defaultCount' => $defaultCount
     ]);
   }
 
