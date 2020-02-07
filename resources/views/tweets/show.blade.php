@@ -185,7 +185,8 @@
             </form>
 
             {{-- {{ $tweet->user }} --}}
-            {{ $tweet->favorites }}
+            {{-- {{ $tweet->favorites }} --}}
+            {{ $tweet->heart }}
 
             {{-- {{ $heartCount }} --}}
             {{-- {{ $comment->text }} --}}
