@@ -10,9 +10,9 @@ class HeartController extends Controller
 {
   public function heart(Tweet $tweet, Request $request)
   {
+    \Debugbar::info($tweet);
     $heart = Heart::create(['user_id' => $request->user_id, 'tweet_id' => $tweet->id]);
-    // dd($heart);
-
+    // dd($request->user_id);
     $heartCount = count(Heart::where('tweet_id', $tweet->id)->get());
 
     return response()->json(['heartCount' => $heartCount]);

@@ -189,8 +189,9 @@
 
             {{-- {{ $tweet->user }} --}}
             {{-- {{ $tweet->favorites }} --}}
-            {{ $tweet->heart }}
-
+            {{-- {{ $tweet->heart }} --}}
+            {{-- {{ $defaultLiked }} --}}
+            {{-- {{ $heartCount }} --}}
             {{-- {{ $heartCount }} --}}
             {{-- {{ $comment->text }} --}}
             {{-- {{$user->id}} --}}

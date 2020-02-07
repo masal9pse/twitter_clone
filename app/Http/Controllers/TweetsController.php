@@ -72,13 +72,13 @@ class TweetsController extends Controller
     $comments = $comment->getComments($tweet->id);
 
     $userAuth = \Auth::user();
-    // $heart->hearts;
-    // $heart->load('heart');
+    // $tweet->heart;
+    $tweet->load('heart');
 
-    // heartsにするとエラー,アロー演算子の中身はカラム以外に何を表しているのか？
-    // modelのメソッド
     $defaultCount = count($tweet->heart);
+    // dd($defaultCount);
     $defaultLiked = $tweet->heart->where('user_id', $userAuth->id)->first();
+    // dd($defaultLiked);
     if (is_countable($defaultLiked)) {
       if (count($defaultLiked) == 0) {
         $defaultLiked == false;
