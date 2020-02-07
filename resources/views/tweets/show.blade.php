@@ -135,7 +135,10 @@
               <!-- 返信にいいね機能 -->
               {{-- @include('components.reply_like') --}}
               <span>
-                <heart></heart>
+                {{-- <heart></heart> --}}
+                <heart :post-id="{{ json_encode($tweet->id) }}" :user-id="{{ json_encode($userAuth->id) }}"
+                  :default-Liked="{{ json_encode($defaultLiked) }}" :default-Count="{{ json_encode($defaultCount) }}">
+                </heart>
               </span>
             </div>
           </div>
