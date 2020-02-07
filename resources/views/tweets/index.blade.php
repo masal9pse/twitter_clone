@@ -8,24 +8,23 @@
       <a href="{{ route('posts.index') }}" class="ml-3">post一覧へ<i class="fas fa-users" class="fa-fw"></i></a>
     </div>
 
-    {{-- <example-component></example-component> --}}
 
     @if (isset($timelines))
     @foreach ($timelines as $timeline)
     <div class="col-md-8 mb-3">
       <div class="card">
         <div class="card-haeder p-3 w-100 d-flex">
-          {{-- <img
-            src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/439295/59b7a1c8-eb94-110e-c6aa-8f50bac57a31.png"
-            class="rounded-circle" width="50" height="50"> --}}
+          {{-- 認証したユーザーの画像 --}}
           <img src="{{ $timeline->user->profile_image }}" class="rounded-circle" width="50" height="50">
           <div class="ml-2 d-flex flex-column">
+            {{-- 認証してコメントしたユーザーの名前 --}}
             <p class="mb-0">{{ $timeline->user->name }}</p>
+            {{-- そのユーザーのデータにリンクを張っている --}}
             <a href="{{ url('users/' .$timeline->user->id) }}"
               class="text-secondary">{{ $timeline->user->screen_name }}</a>
           </div>
           <div class="d-flex justify-content-end flex-grow-1">
-            <p class="mb-0 text-secondary">{{ $timeline->created_at->format('Y-m-d H:i') }}</p>
+            <p class="mb-0 text-secondary">{{ $timeline->created_at->format('Y年m月d日 H時i分') }}</p>
           </div>
         </div>
         <div class="card-body">
