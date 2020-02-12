@@ -55,9 +55,27 @@ class CommentsController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function show($id)
+  public function show(Comment $comment)
   {
-    //
+    $userAuth = \Auth::user();
+    $comment->load('likes');
+    // dd($userAuth);
+    $defaultCount = count($comment->likes);
+    $defaultLiked = $comment->likes->where('user_id', $userAuth->id)->first();
+    if (is_countable($defaultLiked)) {
+      if (count($defaultLiked) == 0) {
+        $defaultLiked == false;
+      } else {
+        $defaultLiked == true;
+      }
+    }
+
+    return view('tweets.show', [
+      'post' => $comment,
+      'userAuth' => $userAuth,
+      'defaultLiked' => $defaultLiked,
+      'defaultCount' => $defaultCount
+    ]);
   }
 
   /**

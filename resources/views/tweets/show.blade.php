@@ -5,6 +5,10 @@
 <div class="container" id="app">
   <div class="row justify-content-center mb-5">
     <div class="col-md-8 mb-3">
+      <div class="col-md-8 mb-3 text-right">
+        <a href="{{ url('users') }}">ユーザ一覧 <i class="fas fa-users" class="fa-fw"></i> </a>
+        <a href="{{ route('posts.index') }}" class="ml-3">post一覧へ<i class="fas fa-users" class="fa-fw"></i></a>
+      </div>
       <div class="card">
         <div class="card-haeder p-3 w-100 d-flex">
           <img src="{{ $tweet->user->profile_image }}" class="rounded-circle" width="50" height="50">
@@ -131,10 +135,10 @@
               <!-- 返信にいいね機能 -->
               {{-- @include('components.reply_like') --}}
               <span>
-                {{-- <like :post-id="{{ json_encode($post->id) }}" :user-id="{{ json_encode($userAuth->id) }}"
-                :default-Liked="{{ json_encode($defaultLiked) }}" :default-Count="{{ json_encode($defaultCount) }}">
-                </like> --}}
-                <heart></heart>
+                {{-- <heart></heart> --}}
+                <heart :post-id="{{ json_encode($tweet->id) }}" :user-id="{{ json_encode($userAuth->id) }}"
+                  :default-Liked="{{ json_encode($defaultLiked) }}" :default-Count="{{ json_encode($defaultCount) }}">
+                </heart>
               </span>
             </div>
           </div>
@@ -182,6 +186,15 @@
                 </div>
               </div>
             </form>
+
+            {{-- {{ $tweet->user }} --}}
+            {{-- {{ $tweet->favorites }} --}}
+            {{-- {{ $tweet->heart }} --}}
+            {{-- {{ $defaultLiked }} --}}
+            {{-- {{ $heartCount }} --}}
+            {{-- {{ $heartCount }} --}}
+            {{-- {{ $comment->text }} --}}
+            {{-- {{$user->id}} --}}
           </div>
         </li>
       </ul>

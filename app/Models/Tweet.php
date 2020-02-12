@@ -24,6 +24,12 @@ class Tweet extends Model
     return $this->belongsTo(User::class);
   }
 
+  public function heart()
+  {
+    return $this->hasMany(Heart::class);
+  }
+
+
   public function favorites()
   {
     return $this->hasMany(Favorite::class);
@@ -84,4 +90,29 @@ class Tweet extends Model
   {
     return $this->where('user_id', $user_id)->where('id', $tweet_id)->delete();
   }
+
+  // 一つのいいねに対してたくさんのユーザーからいいねがつく。hasMany
+
+  public static function defaultLiked($tweet, $user_auth_id)
+  {
+    $defaultLiked = 0;
+    foreach ($tweet['hearts'] as $key => $heart) {
+      if ($heart['user_id'] == $user_auth_id) {
+        $defaultLiked = 1;
+        break;
+      }
+    }
+
+    if (is_countable($defaultLiked)) {
+      if (count($defaultLiked) == 0) {
+        $defaultLiked == false;
+      } else {
+        $defaultLiked == true;
+      }
+    }
+
+    return $defaultLiked;
+  }
 }
+// $like = $heart
+// $post = $tweet
