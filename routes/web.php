@@ -34,6 +34,8 @@ Route::group(['middleware' => 'auth'], function () {
 
   Route::resource('comments', 'CommentsController', ['only' => ['store']]);
 
+  Route::resource('returns', 'ReturnsController', ['only' => ['store']]);
+
   Route::resource('favorites', 'FavoritesController', ['only' => ['store', 'destroy']]);
 
   Route::resource('posts', 'PostController', ['only' => ['index', 'create', 'store', 'show']]);
