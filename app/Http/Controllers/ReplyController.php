@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;aaaaaaaa
+use Illuminate\Http\Request;
 use App\Models\Reply;
 use App\Models\Post;
 class ReplyController extends Controller
@@ -24,7 +24,12 @@ class ReplyController extends Controller
      */
     public function create()
     {
-      return view('replies.create');
+    //  $reply = Post::latest()->where('category_id',$q['category_id'])->get();
+    //  $reply = Reply::get();
+
+      return view('replies.create',[
+        //   'reply' => $reply
+      ]);
     }
 
     /**
@@ -36,12 +41,14 @@ class ReplyController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        $post = new Post;
-         
-        dd($post);
-        $input = $request->only($post->getFillable()); 
-        $post = $post->create($input); 
-        $post->save(); 
+        $reply = new Reply;
+        //  dd($reply);
+        // dd($post);
+        $input = $request->only($reply->getFillable()); 
+        dd($input);
+        $reply = $reply->create($input); 
+        // dd($reply);
+        $reply->save(); 
     
         // return redirect('/');
     }
