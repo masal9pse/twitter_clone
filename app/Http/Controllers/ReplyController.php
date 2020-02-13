@@ -34,7 +34,13 @@ class ReplyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
+        // $post = new Post; 
+        // $input = $request->only($post->getFillable()); 
+        // $post = $post->create($input); 
+        // $post->save(); 
+    
+        // return redirect('/');
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReturnsTable extends Migration
+class CreateRepliesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateReturnsTable extends Migration
      */
     public function up()
     {
-        Schema::create('returns', function (Blueprint $table) {
+        Schema::create('replies', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->comment('ユーザID');
-            $table->unsignedInteger('comment_id')->comment('返信ID');
+            $table->unsignedInteger('comment_id')->comment('ツイートID');
             $table->string('text')->comment('本文');
             $table->softDeletes(); //add deleted_at
             $table->timestamps();
@@ -47,6 +47,6 @@ class CreateReturnsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('returns');
+        Schema::dropIfExists('replies');
     }
 }
