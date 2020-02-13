@@ -24,12 +24,11 @@ class ReplyController extends Controller
      */
     public function create()
     {
-    //  $reply = Post::latest()->where('category_id',$q['category_id'])->get();
-     $reply = Reply::all();
-     $reply->load('user');
-     dd($reply);
+        $q = \Request::query();
+        // dd($q['post_id']);
+        // dd($q);
       return view('replies.create',[
-          'reply' => $reply
+        //   'comment_id' => $q['comment_id']
       ]);
     }
 
@@ -39,21 +38,18 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Reply $reply)
     {
-    $q = \Request::query();
-    dd($q);
-        // dd($request);
-        $reply = new Reply;
-        //  dd($reply);
-        // dd($post);
-        $input = $request->only($reply->getFillable()); 
-        dd($input);
-        $reply = $reply->create($input); 
-        // dd($reply);
-        $reply->save(); 
+        $user = auth()->user();
+        $data = $request->all();
+        dd($data);
+        $validator = Validator::make($data, [
+          'text' => ['required', 'string', 'max:140']
+        ]);
     
-        // return redirect('/');
+        $validator->validate();
+        $tweet->tweetStore($user->id, $data);
+        return redirect('tweets');
     }
 
     /**
