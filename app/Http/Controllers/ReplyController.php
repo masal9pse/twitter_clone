@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Reply;
+use App\Models\Post;
 class ReplyController extends Controller
 {
     /**
@@ -34,11 +35,13 @@ class ReplyController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-        // $post = new Post; 
-        // $input = $request->only($post->getFillable()); 
-        // $post = $post->create($input); 
-        // $post->save(); 
+        // dd($request);
+        $post = new Post;
+         
+        dd($post);
+        $input = $request->only($post->getFillable()); 
+        $post = $post->create($input); 
+        $post->save(); 
     
         // return redirect('/');
     }
