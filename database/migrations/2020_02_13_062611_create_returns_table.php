@@ -15,15 +15,28 @@ class CreateReturnsTable extends Migration
     {
         Schema::create('returns', function (Blueprint $table) {
             $table->increments('id');
-
-            $table->integer('user_id')->unsigned()->index();
-            $table->integer('return_id')->unsigned()->index();
-      
-            $table->string('comment')->nullable();
-      
-            $table->foreign('user_id')->references('id')->on('posts')->onDelete('cascade');
-            $table->foreign('return_id')->references('id')->on('tweets')->onDelete('cascade');
+            $table->unsignedInteger('user_id')->comment('ユーザID');
+            $table->unsignedInteger('comment_id')->comment('返信ID');
+            $table->string('text')->comment('本文');
+            $table->softDeletes(); //add deleted_at
             $table->timestamps();
+      
+            // what is index()?
+            $table->index('id');
+            $table->index('user_id');
+            $table->index('comment_id');
+      
+            $table->foreign('user_id')
+              ->references('id')
+              ->on('users')
+              ->onDelete('cascade')
+              ->onUpdate('cascade');
+      
+            $table->foreign('comment_id')
+              ->references('id')
+              ->on('comments')
+              ->onDelete('cascade')
+              ->onUpdate('cascade');
         });
     }
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ReturnController extends Controller
+class ReplyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class ReturnController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -23,7 +23,7 @@ class ReturnController extends Controller
      */
     public function create()
     {
-      return view('returns.create');
+      return view('replies.create');
     }
 
     /**
