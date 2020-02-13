@@ -25,10 +25,11 @@ class ReplyController extends Controller
     public function create()
     {
     //  $reply = Post::latest()->where('category_id',$q['category_id'])->get();
-    //  $reply = Reply::get();
-
+     $reply = Reply::all();
+     $reply->load('user');
+     dd($reply);
       return view('replies.create',[
-        //   'reply' => $reply
+          'reply' => $reply
       ]);
     }
 
@@ -40,6 +41,8 @@ class ReplyController extends Controller
      */
     public function store(Request $request)
     {
+    $q = \Request::query();
+    dd($q);
         // dd($request);
         $reply = new Reply;
         //  dd($reply);
