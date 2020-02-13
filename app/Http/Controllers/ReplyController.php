@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Request;aaaaaaaa
 use App\Models\Reply;
 use App\Models\Post;
 class ReplyController extends Controller
