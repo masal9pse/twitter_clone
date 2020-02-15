@@ -32,11 +32,11 @@ class CreateRepliesTable extends Migration
               ->onDelete('cascade')
               ->onUpdate('cascade');
       
-            $table->foreign('comment_id')
-              ->references('id')
-              ->on('comments')
-              ->onDelete('cascade')
-              ->onUpdate('cascade');
+            // $table->foreign('comment_id')
+            //   ->references('id')
+            //   ->on('comments')
+            //   ->onDelete('cascade')
+            //   ->onUpdate('cascade');
         });
     }
 

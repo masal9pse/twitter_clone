@@ -24,11 +24,9 @@ class ReplyController extends Controller
      */
     public function create()
     {
-        $q = \Request::query();
-        // dd($q['post_id']);
-        // dd($q);
-      return view('replies.create',[
-        //   'comment_id' => $q['comment_id']
+        $user = auth()->user();
+           return view('replies.create',[
+          'user' => $user
       ]);
     }
 
@@ -42,14 +40,16 @@ class ReplyController extends Controller
     {
         $user = auth()->user();
         $data = $request->all();
-        dd($data);
-        $validator = Validator::make($data, [
-          'text' => ['required', 'string', 'max:140']
-        ]);
+        // dd($data);
+        // $validator = Validator::make($data, [
+        //   'text' => ['required', 'string', 'max:140']
+        // ]);
     
-        $validator->validate();
-        $tweet->tweetStore($user->id, $data);
-        return redirect('tweets');
+        // $validator->validate();
+        // dd($validator);
+        $reply->commentStore($user->id,$data);
+        // dd($reply);
+        return redirect('replies');
     }
 
     /**
