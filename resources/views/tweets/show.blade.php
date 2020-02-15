@@ -49,7 +49,9 @@
 
           {{-- 自分が投稿したコメント機能 --}}
           <div class="mr-3 d-flex align-items-center">
-            <a href="{{ url('tweets/' .$tweet->id) }}"><i class="far fa-comment fa-fw"></i></a>
+            <a href="{{ url('tweets/' .$tweet->id) }}">
+              <i class="far fa-comment fa-fw"></i>
+            </a>
             <p class="mb-0 text-secondary">{{ count($tweet->comments) }}</p>
           </div>
           {{-- コメント機能ここまで --}}
@@ -127,11 +129,12 @@
 
               {{-- 自分が投稿したコメント機能 --}}
               <div class="mr-3 d-flex align-items-center">
-                <a href="{{ url('tweets/' .$tweet->id) }}">
-                {{-- <a href="{{ route('returns.create') }}"> --}}
+                {{-- <a href="{{ url('tweets/' .$tweet->id) }}"> --}}
+                <a href="{{ route('replies.create') }}">
                   <i class="far fa-comment fa-fw"></i>
                 </a>
-                <p class="mb-0 text-secondary">{{ count($tweet->comments) }}</p>
+                {{-- <p class="mb-0 text-secondary">{{ count($tweet->comments) }}</p> --}}
+                <p class="mb-0 text-secondary">??</p>
               </div>
               {{-- コメント機能ここまで --}}
 

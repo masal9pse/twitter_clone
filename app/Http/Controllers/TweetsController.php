@@ -20,6 +20,7 @@ class TweetsController extends Controller
   {
     $user = auth()->user();
     $follow_ids = $follower->followingIds($user->id);
+    // dd($follow_ids);
     $following_ids = $follow_ids->pluck('followed_id')->toArray();
     // dd($following_ids);
     $timelines = $tweet->getTimelines($user->id, $following_ids);

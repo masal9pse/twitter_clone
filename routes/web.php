@@ -28,11 +28,14 @@ Route::group(['middleware' => 'auth'], function () {
   Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
 
   Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
+  
   Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
 
   Route::resource('tweets', 'TweetsController', ['only' => ['index',   'create', 'store', 'show', 'edit', 'update', 'destroy']]);
 
   Route::resource('comments', 'CommentsController', ['only' => ['store']]);
+  
+  Route::resource('replies', 'ReplyController');
 
   Route::resource('returns', 'ReturnsController', ['only' => ['store']]);
 
