@@ -16,6 +16,11 @@
             </button>
         </div>
     </div>
+    {{-- {{ $reply->id }} --}}
+    @foreach ($replies as $reply)
+    <p class="ml-5">
+        {{ $reply->text }}      
+    </p>
+    @endforeach
 </form>
-{{ $data }}
 @endsection

@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
 
+namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Reply;
 use App\Models\Post;
@@ -22,13 +22,14 @@ class ReplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Reply $data)
+    public function create()
     {
 
         $user = auth()->user();
+        $replies = Reply::latest()->get();
            return view('replies.create',[
           'user' => $user,
-          'data' => $data,
+          'replies' => $replies,
       ]);
     }
 
@@ -38,7 +39,7 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Reply $reply)
+    public function store(Request $request, Reply $replies)
     {
         $user = auth()->user();
         $data = $request->all();
@@ -49,10 +50,8 @@ class ReplyController extends Controller
     
         // $validator->validate();
         // dd($validator);
-        $reply->commentStore($user->id,$data);
-        // dd($reply);
-        // redirectはnameメソッドは取得できないので.ではなく/を使う
-        return redirect('replies/create');
+        $replies->commentStore($user->id,$data);
+        return redirect()->route('replies.create');
     }
 
     /**
