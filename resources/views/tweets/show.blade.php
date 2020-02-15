@@ -133,7 +133,8 @@
                 <a href="{{ route('replies.create') }}">
                   <i class="far fa-comment fa-fw"></i>
                 </a>
-                <p class="mb-0 text-secondary">{{ count($tweet->comments) }}</p>
+                {{-- <p class="mb-0 text-secondary">{{ count($tweet->comments) }}</p> --}}
+                <p class="mb-0 text-secondary">??</p>
               </div>
               {{-- コメント機能ここまで --}}
 
