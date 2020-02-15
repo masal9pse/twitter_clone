@@ -22,13 +22,13 @@ class ReplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Reply $reply)
+    public function create(Reply $data)
     {
 
         $user = auth()->user();
            return view('replies.create',[
           'user' => $user,
-          'reply' => $reply,
+          'data' => $data,
       ]);
     }
 
@@ -51,7 +51,8 @@ class ReplyController extends Controller
         // dd($validator);
         $reply->commentStore($user->id,$data);
         // dd($reply);
-        return redirect('replies.create');
+        // redirectはnameメソッドは取得できないので.ではなく/を使う
+        return redirect('replies/create');
     }
 
     /**

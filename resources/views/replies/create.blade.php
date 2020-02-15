@@ -17,5 +17,5 @@
         </div>
     </div>
 </form>
-{{ $reply->comment_id }}
+{{ $data }}
 @endsection
