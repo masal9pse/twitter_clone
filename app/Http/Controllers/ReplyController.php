@@ -22,11 +22,13 @@ class ReplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Reply $reply)
     {
+
         $user = auth()->user();
            return view('replies.create',[
-          'user' => $user
+          'user' => $user,
+          'reply' => $reply,
       ]);
     }
 
@@ -49,7 +51,7 @@ class ReplyController extends Controller
         // dd($validator);
         $reply->commentStore($user->id,$data);
         // dd($reply);
-        return redirect('replies');
+        return redirect('replies.create');
     }
 
     /**
