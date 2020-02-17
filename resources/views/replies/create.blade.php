@@ -13,11 +13,11 @@
             <p class="mb-4 text-danger">140文字以内</p>
             <button type="submit" class="btn btn-primary">
                 コメントする
-            </button>
+            <button>
         </div>
     </div>
     {{-- {{ $reply->id }} --}}
-    @foreach ((array)$replies->comments as $reply)
+    @foreach ((array)$replies as $reply)
     <p class="ml-5">
         {{ $reply->text }}      
     </p>

@@ -14,7 +14,7 @@ class ReplyController extends Controller
      */
     public function index()
     {
-        //
+        return view('replies.index');
     }
 
     /**
@@ -29,7 +29,8 @@ class ReplyController extends Controller
         // dd($user);
         $replies = Reply::latest()->first();
         // dd($replies);
-        $replies->load('comments');
+        // $replies->load('comments');
+        // dd($replies);
            return view('replies.create',[
           'user' => $user,
           'replies' => $replies,
@@ -42,13 +43,15 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Reply $replies)
+    public function store(Request $request)
     {
-        $user = auth()->user();
-        $data = $request->all();
-        // dd($data);
-        $replies->commentStore($user->id,$data);
-        return redirect()->route('replies.create');
+        $reply = new Reply;	
+        $input = $request->only($reply->getFillable());	
+        $reply = $reply->create($input);	       
+        $reply->save();	  
+        	        
+        return redirect('/replies/'.$reply->comment_id);
+      
     }
 
     /**
