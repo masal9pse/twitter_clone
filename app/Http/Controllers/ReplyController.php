@@ -26,9 +26,10 @@ class ReplyController extends Controller
     {
 
         $user = auth()->user();
+        // dd($user);
         $replies = Reply::latest()->first();
         // dd($replies);
-        // $replies->load('comments');
+        $replies->load('comments');
            return view('replies.create',[
           'user' => $user,
           'replies' => $replies,
@@ -45,6 +46,7 @@ class ReplyController extends Controller
     {
         $user = auth()->user();
         $data = $request->all();
+        // dd($data);
         $replies->commentStore($user->id,$data);
         return redirect()->route('replies.create');
     }
