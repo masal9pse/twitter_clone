@@ -27,9 +27,9 @@ class ReplyController extends Controller
 
         $user = auth()->user();
         // dd($user);
-        $replies = Reply::latest()->first();
+        $replies = Reply::latest()->get();
         // dd($replies);
-        // $replies->load('comments');
+        $replies->load('comments','user');
         // dd($replies);
            return view('replies.create',[
           'user' => $user,
@@ -46,12 +46,11 @@ class ReplyController extends Controller
     public function store(Request $request)
     {
         $reply = new Reply;	
-        $input = $request->only($reply->getFillable());	
-        $reply = $reply->create($input);	       
-        $reply->save();	  
+        $input = $request->only($reply->getFillable()); //text
+        $reply = $reply->fill($input);	       
+        $reply->save();	
         	        
-        return redirect('/replies/'.$reply->comment_id);
-      
+        return redirect()->route('replies.create');
     }
 
     /**

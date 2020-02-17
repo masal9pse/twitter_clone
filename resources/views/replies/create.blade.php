@@ -7,6 +7,10 @@
     <div class="form-group">
         <label for="comment">Comment:</label>
         <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+        user_id:
+        <input type="text" name="user_id" value="{{ Auth::id() }}">
+        tweet_id:<input type="text" name="tweet_id">
+
       </div>
     <div class="form-group row mb-0">
         <div class="col-md-12 text-right">
@@ -17,9 +21,10 @@
         </div>
     </div>
     {{-- {{ $reply->id }} --}}
-    @foreach ((array)$replies as $reply)
+    @foreach ($replies as $item)
     <p class="ml-5">
-        {{ $reply->text }}      
+        {{ $item->text }}      
+        {{ $item->user_id }}
     </p>
     @endforeach
 </form>

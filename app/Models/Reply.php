@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reply extends Model
 {
   protected $fillable = [
-    'id','text','comment_id'
+    'id','text','tweet_id','user_id'
   ];
 
     public function user()
@@ -16,7 +16,7 @@ class Reply extends Model
   }
 
   public function comments(){
-    return $this->belongsTo(\App\Models\Comment::class, 'comment_id','id');
+    return $this->belongsTo(\App\Models\Comment::class, 'tweet_id','id');
   }
 
   public function commentStore($user_id,$data)

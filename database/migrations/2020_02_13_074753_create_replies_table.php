@@ -15,28 +15,14 @@ class CreateRepliesTable extends Migration
     {
         Schema::create('replies', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id')->comment('ユーザID');
-            $table->unsignedInteger('comment_id')->comment('ツイートID');
-            $table->string('text')->comment('本文');
-            $table->softDeletes(); //add deleted_at
+            // index()?
+            $table->integer('user_id')->unsigned()->index();
+            $table->integer('tweet_id')->unsigned()->index();
+      
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('tweet_id')->references('id')->on('comments')->onDelete('cascade');
+      
             $table->timestamps();
-      
-            // what is index()?
-            $table->index('id');
-            $table->index('user_id');
-            $table->index('comment_id');
-      
-            $table->foreign('user_id')
-              ->references('id')
-              ->on('users')
-              ->onDelete('cascade')
-              ->onUpdate('cascade');
-      
-            $table->foreign('comment_id')
-              ->references('id')
-              ->on('comments')
-              ->onDelete('cascade')
-              ->onUpdate('cascade');
         });
     }
     /**
