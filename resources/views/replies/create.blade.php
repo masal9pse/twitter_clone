@@ -17,7 +17,7 @@
         </div>
     </div>
     {{-- {{ $reply->id }} --}}
-    @foreach ($replies as $reply)
+    @foreach ((array)$replies->comments as $reply)
     <p class="ml-5">
         {{ $reply->text }}      
     </p>

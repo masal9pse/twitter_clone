@@ -26,7 +26,9 @@ class ReplyController extends Controller
     {
 
         $user = auth()->user();
-        $replies = Reply::latest()->get();
+        $replies = Reply::latest()->first();
+        // dd($replies);
+        // $replies->load('comments');
            return view('replies.create',[
           'user' => $user,
           'replies' => $replies,
@@ -43,13 +45,6 @@ class ReplyController extends Controller
     {
         $user = auth()->user();
         $data = $request->all();
-        // dd($data);
-        // $validator = Validator::make($data, [
-        //   'text' => ['required', 'string', 'max:140']
-        // ]);
-    
-        // $validator->validate();
-        // dd($validator);
         $replies->commentStore($user->id,$data);
         return redirect()->route('replies.create');
     }
