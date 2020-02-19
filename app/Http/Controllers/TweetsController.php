@@ -66,10 +66,12 @@ class TweetsController extends Controller
    * @return \Illuminate\Http\Response
    */
   // 恐らくここに返信に対してのいいねの処理を書けばいいはず
-  public function show(Tweet $tweet, Comment $comment, Heart $heart,Reply $reply)
+  // 引数にモデルを指定するのはつまり、newでインスタンスを作っていることと同じだった。
+  public function show(Tweet $tweet,Heart $heart)
   {
     $user = auth()->user();
     $tweet = $tweet->getTweet($tweet->id);
+    $comment = new Comment;
     $comments = $comment->getComments($tweet->id);
     // dd($comments);
     // $reply = $reply->getComments($tweet->id);
@@ -97,7 +99,6 @@ class TweetsController extends Controller
       'tweet' => $tweet,
       'heart' => $heart,
       'comments' => $comments,
-      'reply' => $reply,
       'userAuth' => $userAuth,
       'defaultLiked' => $defaultLiked,
       'defaultCount' => $defaultCount
