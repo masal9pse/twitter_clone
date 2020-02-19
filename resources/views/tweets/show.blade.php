@@ -154,11 +154,14 @@
         <span>
         {{ $item->text }}
         </span>
-        {{-- {{ $item->tweet_id }} --}}
-        {{-- <p class="mb-0 text-secondary">{{ count($reply->text) }}</p> --}}
-        {{-- <p class="mb-0 text-secondary">{{ count($reply->text) }}</p> --}}
-        {{-- @endif --}}
         @endforeach
+        {{-- @foreach($reply->comments $item2)
+        <span>
+        {{ $item2->text }}
+        </span>
+        @endforeach --}}
+        {{-- $replyは空なのでモデルでreplyのデータを取ってくるメソッドを定義しないとダメっぽい --}}
+        {{ $reply }}
         @empty
         <li class="list-group-item">
           <p class="mb-0 text-secondary">コメントはまだありません。</p>
