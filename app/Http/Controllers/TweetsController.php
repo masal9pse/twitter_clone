@@ -72,7 +72,7 @@ class TweetsController extends Controller
     $tweet = $tweet->getTweet($tweet->id);
     $comments = $comment->getComments($tweet->id);
     // $reply = $reply->getComments($tweet->id);
-    $reply= Reply::all();
+    // $reply= Reply::all();
     // dd($reply);
     // var_dump($replies);
     // $replies = Reply::find($comments);
