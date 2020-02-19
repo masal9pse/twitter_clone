@@ -129,28 +129,17 @@
 
               {{-- 自分が投稿したコメント機能 --}}
               <div class="mr-3 d-flex align-items-center">
-                {{-- <a href="{{ url('tweets/' .$tweet->id) }}"> --}}
                 <a href="{{ route('replies.create') }}">
                   <i class="far fa-comment fa-fw"></i>
                 </a>
+                {{ count($comment->replies) }}
               </div>
-              @php
-              dd([$comment]);
-              @endphp
-                  @foreach($comment->replies as $item)
-                  @if (is_countable($item)) 
-                  {{-- {{ $item->text }} --}}
-                  {{ count($item->text) }}
-                  {{-- <p class="mb-0 text-secondary">{{ count($item->text) }}</p> --}}
-                  {{-- <p class="mb-0 text-secondary">{{ count($reply->text) }}</p> --}}
-                  @endif
-                  @endforeach
+               
               {{-- コメント機能ここまで --}}
 
               <!-- 返信にいいね機能 -->
               {{-- @include('components.reply_like') --}}
               <span>
-                {{-- <heart></heart> --}}
                 <heart :post-id="{{ json_encode($tweet->id) }}" :user-id="{{ json_encode($userAuth->id) }}"
                   :default-Liked="{{ json_encode($defaultLiked) }}" :default-Count="{{ json_encode($defaultCount) }}">
                 </heart>
@@ -162,7 +151,6 @@
           
         </li>
        @foreach($comment->replies as $item)
-        {{-- @if (is_countable($reply))  --}}
         <span>
         {{ $item->text }}
         </span>

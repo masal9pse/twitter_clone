@@ -71,13 +71,11 @@ class TweetsController extends Controller
     $user = auth()->user();
     $tweet = $tweet->getTweet($tweet->id);
     $comments = $comment->getComments($tweet->id);
+    // dd($comments);
     // $reply = $reply->getComments($tweet->id);
     // $reply= Reply::all();
     // dd($reply);
     // var_dump($replies);
-    // $replies = Reply::find($comments);
-    // dd($replies);
-    // $replies
     $userAuth = \Auth::user();
     // $tweet->heart;
     $tweet->load('heart');
