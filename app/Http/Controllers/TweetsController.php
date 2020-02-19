@@ -8,7 +8,7 @@ use App\Models\Tweet;
 use App\Models\Comment;
 use App\Models\Follower;
 use App\Models\Heart;
-
+use App\Models\Reply;
 class TweetsController extends Controller
 {
   /**
@@ -66,12 +66,18 @@ class TweetsController extends Controller
    * @return \Illuminate\Http\Response
    */
   // 恐らくここに返信に対してのいいねの処理を書けばいいはず
-  public function show(Tweet $tweet, Comment $comment, Heart $heart)
+  public function show(Tweet $tweet, Comment $comment, Heart $heart,Reply $reply)
   {
     $user = auth()->user();
     $tweet = $tweet->getTweet($tweet->id);
     $comments = $comment->getComments($tweet->id);
-
+    // $reply = $reply->getComments($tweet->id);
+    $reply= Reply::all();
+    // dd($reply);
+    // var_dump($replies);
+    // $replies = Reply::find($comments);
+    // dd($replies);
+    // $replies
     $userAuth = \Auth::user();
     // $tweet->heart;
     $tweet->load('heart');
@@ -93,6 +99,7 @@ class TweetsController extends Controller
       'tweet' => $tweet,
       'heart' => $heart,
       'comments' => $comments,
+      'reply' => $reply,
       'userAuth' => $userAuth,
       'defaultLiked' => $defaultLiked,
       'defaultCount' => $defaultCount

@@ -133,8 +133,14 @@
                 <a href="{{ route('replies.create') }}">
                   <i class="far fa-comment fa-fw"></i>
                 </a>
-                {{-- <p class="mb-0 text-secondary">{{ count($tweet->comments) }}</p> --}}
-                <p class="mb-0 text-secondary">??</p>
+                {{-- @foreach($replies as $reply)
+                @if (is_countable($reply))  --}}
+                {{-- {{ $reply->text }}
+                <p class="mb-0 text-secondary">{{ count($reply->text) }}</p>
+                <p class="mb-0 text-secondary">{{ count($reply->text) }}</p>
+                @endif
+                @endforeach --}}
+                {{-- <p class="mb-0 text-secondary">??</p> --}}
               </div>
               {{-- コメント機能ここまで --}}
 
@@ -148,9 +154,18 @@
               </span>
             </div>
           </div>
+          
           {{-- ここまでが自分が投稿したところ --}}
-
+          
         </li>
+        ここに詳細画面を表示する
+        @foreach($reply as $item)
+                {{-- @if (is_countable($reply))  --}} 
+                {{ $item->text }}
+                {{-- <p class="mb-0 text-secondary">{{ count($reply->text) }}</p> --}}
+                {{-- <p class="mb-0 text-secondary">{{ count($reply->text) }}</p> --}}
+                {{-- @endif --}}
+                @endforeach
         @empty
         <li class="list-group-item">
           <p class="mb-0 text-secondary">コメントはまだありません。</p>

@@ -25,6 +25,7 @@
     <p class="ml-5">
         {{ $item->text }}      
         {{ $item->user_id }}
+        {{ $item->tweet_id }}
     </p>
     @endforeach
 </form>

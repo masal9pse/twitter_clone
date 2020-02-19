@@ -27,4 +27,9 @@ class Reply extends Model
 
     return;
   }
+
+  public function getReply(Int $tweet_id)
+  {
+    return $this->with('user')->where('tweet_id', $tweet_id)->get();
+  }
 }
