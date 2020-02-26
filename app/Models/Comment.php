@@ -7,37 +7,38 @@ use Illuminate\Database\Eloquent\softDeletes;
 
 class Comment extends Model
 {
-  use SoftDeletes;
+ use SoftDeletes;
 
-  /**
-   * The attributes that are mass assignable.
-   *
-   * @var array
-   */
-  protected $fillable = [
-    'text'
-  ];
-  public function user()
-  {
-    return $this->belongsTo(User::class);
-  }
+ /**
+  * The attributes that are mass assignable.
+  *
+  * @var array
+  */
+ protected $fillable = [
+  'text'
+ ];
+ public function user()
+ {
+  return $this->belongsTo(User::class);
+ }
 
-  public function replies(){
-    return $this->hasMany(\App\Models\Comment::class, 'tweet_id','id');
-  }
-  
-  public function getComments(Int $tweet_id)
-  {
-    return $this->with('user')->where('tweet_id', $tweet_id)->get();
-  }
+ public function replies()
+ {
+  return $this->hasMany(\App\Models\Comment::class, 'tweet_id', 'id');
+ }
 
-  public function commentStore(Int $user_id, array $data)
-  {
-    $this->user_id = $user_id;
-    $this->tweet_id = $data['tweet_id'];
-    $this->text = $data['text'];
-    $this->save();
+ public function getComments(Int $tweet_id)
+ {
+  return $this->with('user')->where('tweet_id', $tweet_id)->get();
+ }
 
-    return;
-  }
+ public function commentStore(Int $user_id, array $data)
+ {
+  $this->user_id = $user_id;
+  $this->tweet_id = $data['tweet_id'];
+  $this->text = $data['text'];
+  $this->save();
+
+  return;
+ }
 }
