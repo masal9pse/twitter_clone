@@ -22,7 +22,6 @@
  <!-- Font Awesome -->
  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
- {{-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script> --}}
  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
@@ -62,14 +61,15 @@
       <!-- 追加 -->
       <li class="nav-item mr-5">
        <a href="{{ url('tweets/create') }}" class="btn btn-md btn-primary">ツイートする</a>
-       <a class="dropdown-item" href="{{ route('posts.create') }}">
-        post create
+       <a class="btn btn-md btn-danger" href="{{ route('posts.create') }}">
+        PostCreate
        </a>
       </li>
 
 
-      <li class="nav-item">
-       <img src="{{ asset('storage/profile_image' .auth()->user()->profile_image) }}" class="rounded-circle" width="50" height="50">
+      <li class="nav-item mt-3 mr-3">
+       <img src="{{ asset('storage/profile_image/' .auth()->user()->profile_image) }}" class="rounded-circle" width="50"
+        height="50">
       </li>
       <li class="nav-item dropdown">
        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
