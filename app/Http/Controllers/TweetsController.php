@@ -71,11 +71,12 @@ class TweetsController extends Controller
  public function show(Tweet $tweet, Comment $comment, Heart $heart, Reply $reply)
  {
   $tweet->load(['comments', 'comments.user', 'comments.hearts']);
-  dd($tweet);
+  // dd($tweet);
   $comments = $tweet->comments;
   // dd($comments);
   foreach($comments as $comment) {
    $hearts = $comment->hearts;
+   // dd($hearts);
    // \Debugbar::info($hearts);
   }
   // dd($tweet);
@@ -86,7 +87,7 @@ class TweetsController extends Controller
   // dd($tweet);
   $comments = $comment->getComments($tweet->id); 
   // dd($comment);
-  $tweet->load('user', 'comments');
+  // $tweet->load('user', 'comments');
   // dd($tweet);
   $userAuth = \Auth::user();
   // dd($userAuth);
@@ -96,13 +97,14 @@ class TweetsController extends Controller
   // $heart->load('comment','user');
   // dd($heart);
 
-  $defaultCount = count($tweet->hearts->comments);
-  dd($defaultCount);
-  $defaultLiked = $tweet->comments->where('user_id', $userAuth->id)->first();
+  // $defaultCount = count($tweet->comments->hearts);
+  $defaultCount = count($comment->hearts);
+  // dd($defaultCount);
+  $defaultLiked = $comment->hearts->where('user_id', $userAuth->id)->first();
   // dd($defaultLiked);
   if (is_countable($defaultLiked)) {
    if (count($defaultLiked) == 0) {
-    $defaultLiked == true;
+    $defaultLiked == false;
    } else {
     $defaultLiked == true;
    }
