@@ -11,7 +11,7 @@
    </div>
    <div class="card">
     <div class="card-haeder p-3 w-100 d-flex">
-     <img src="{{ $tweet->user->profile_image }}" class="rounded-circle" width="50" height="50">
+     <img src="{{ asset('storage/profile_image/' .$tweet->user->profile_image) }}" class="rounded-circle" width="50" height="50">
      <div class="ml-2 d-flex flex-column">
       <p class="mb-0">{{ $tweet->user->name }}</p>
       <a href="{{ url('users/' .$tweet->user->id) }}" class="text-secondary">{{ $tweet->user->screen_name }}</a>
@@ -91,7 +91,7 @@
     @forelse ($comments as $comment)
     <li class="list-group-item">
      <div class="py-3 w-100 d-flex">
-      <img src="{{ $comment->user->profile_image }}" class="rounded-circle" width="50" height="50">
+      <img src="{{ asset('storage/profile_image/' .$comment->user->profile_image) }}" class="rounded-circle" width="50" height="50">
       <div class="ml-2 d-flex flex-column">
        <p class="mb-0">{{ $comment->user->name }}</p>
        <a href="{{ url('users/' .$comment->user->id) }}" class="text-secondary">{{ $comment->user->screen_name }}</a>
@@ -153,13 +153,7 @@
      {{ $item->text }}
     </span>
     @endforeach
-    {{-- @foreach($reply->comments $item2)
-        <span>
-        {{ $item2->text }}
-    </span>
-    @endforeach --}}
-    {{-- $replyは空なのでモデルでreplyのデータを取ってくるメソッドを定義しないとダメっぽい --}}
-    {{ $reply }}
+    {{-- {{ $reply }} --}}
     @empty
     <li class="list-group-item">
      <p class="mb-0 text-secondary">コメントはまだありません。</p>
@@ -173,9 +167,9 @@
        {{-- ログインしたユーザー、つまり自分 --}}
        <div class="form-group row mb-0">
         <div class="col-md-12 p-3 w-100 d-flex">
-         <img src="{{  $user->profile_image }}" class="rounded-circle" width="50" height="50">
+         <img src="{{ asset('storage/profile_image/' .$comment->user->profile_image) }}" class="rounded-circle" width="50" height="50">
          <div class="ml-2 d-flex flex-column">
-          <p class="mb-0">{{ $user->name }}</p>
+          <p class="mb-0">{{ $user->name }}</p> 
           <a href="{{ url('users/' .$user->id) }}" class="text-secondary">{{ $user->screen_name }}</a>
          </div>
         </div>
