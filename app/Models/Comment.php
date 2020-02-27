@@ -19,17 +19,17 @@ class Comment extends Model
  ];
  public function user()
  {
-  return $this->belongsTo(User::class);
+  return $this->belongsTo(User::class,'user_id');
  }
 
  public function replies()
  {
-  return $this->hasMany(\App\Models\Comment::class, 'tweet_id', 'id');
+  return $this->hasMany(\App\Models\Comment::class,'tweet_id');
  }
 
  public function hearts()
  {
-  return $this->hasMany(\App\Models\Heart::class, 'comment_id', 'id');
+  return $this->hasMany(Heart::class,'comment_id');
  }
 
  public function getComments(Int $tweet_id)

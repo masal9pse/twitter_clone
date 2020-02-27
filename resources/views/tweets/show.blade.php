@@ -139,6 +139,7 @@
 
        <!-- 返信にいいね機能 -->
        <span>
+        {{-- <heart></heart> --}}
         <heart :post-id="{{ json_encode($comment->id) }}" :user-id="{{ json_encode($userAuth->id) }}"
          :default-Liked="{{ json_encode($defaultLiked) }}" :default-Count="{{ json_encode($defaultCount) }}">
        </heart>

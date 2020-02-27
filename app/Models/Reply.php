@@ -17,7 +17,7 @@ class Reply extends Model
 
  public function comments()
  {
-  return $this->belongsTo(\App\Models\Comment::class, 'tweet_id', 'id');
+  return $this->belongsTo(\App\Models\Comment::class, 'comment_id', 'id');
  }
 
  public function commentStore($user_id, $data)
