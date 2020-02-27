@@ -70,20 +70,37 @@ class TweetsController extends Controller
  // 引数にモデルを指定するのはつまり、newでインスタンスを作っていることと同じだった。
  public function show(Tweet $tweet, Comment $comment, Heart $heart, Reply $reply)
  {
+  $tweet->load(['comments', 'comments.user', 'comments.hearts']);
+  // dd($tweet);
+  $comments = $tweet->comments;
+  // dd($comments);
+  foreach($comments as $comment) {
+   $hearts = $comment->hearts;
+   // dd($hearts);
+   // \Debugbar::info($hearts);
+  }
+  // dd($tweet);
   $user = auth()->user();
+  // dd($user);
   $tweet = $tweet->getTweet($tweet->id);
   // $comment = new Comment;
   // dd($tweet);
-  $comments = $comment->getComments($tweet->id); //tweet以外のデータをとる時には必要
-  $tweet->load('user', 'heart', 'comments');
+  $comments = $comment->getComments($tweet->id); 
+  // dd($comment);
+  // $tweet->load('user', 'comments');
   // dd($tweet);
   $userAuth = \Auth::user();
-  // $tweet->heart;
-  $tweet->load('heart');
+  // dd($userAuth);
+  // $tweet->heat;
+  // $comment->load('hearts','user');
+  // dd($comment);
+  // $heart->load('comment','user');
+  // dd($heart);
 
-  $defaultCount = count($tweet->heart);
+  // $defaultCount = count($tweet->comments->hearts);
+  $defaultCount = count($comment->hearts);
   // dd($defaultCount);
-  $defaultLiked = $tweet->heart->where('user_id', $userAuth->id)->first();
+  $defaultLiked = $comment->hearts->where('user_id', $userAuth->id)->first();
   // dd($defaultLiked);
   if (is_countable($defaultLiked)) {
    if (count($defaultLiked) == 0) {

@@ -11,7 +11,7 @@
     </button>
     <button v-else type="button" class="btn p-0 border-0 text-danger" @click="unheart(postId)">
       <i class="fas fa-heart fa-fw"></i>
-      <span>{{ heartCount }}</span>
+      <span>{{ this.heartCount }}</span>
     </button>
   </div>
 </template>
@@ -54,7 +54,8 @@ export default {
         })
         .then(response => {
           this.hearted = false;
-          this.heartCount = response.data.heartCount;
+          // this.heartCount = response.data.heartCount;
+          this.heartCount = 0;
         })
         .catch(error => {
           alert(error);

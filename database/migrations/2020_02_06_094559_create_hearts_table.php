@@ -16,10 +16,10 @@ class CreateHeartsTable extends Migration
     Schema::create('hearts', function (Blueprint $table) {
       $table->increments('id');
       $table->integer('user_id')->unsigned()->index();
-      $table->integer('tweet_id')->unsigned()->index();
+      $table->integer('comment_id')->unsigned()->index();
 
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-      $table->foreign('tweet_id')->references('id')->on('tweets')->onDelete('cascade');
+      $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
       $table->timestamps();
     });
   }
