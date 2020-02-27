@@ -18,10 +18,6 @@ Auth::routes();
 
 
 Route::group(['middleware' => 'auth'], function () {
-  Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
-});
-
-Route::group(['middleware' => 'auth'], function () {
 
   Route::get('/', 'TweetsController@index')->name('tweets.index');
 

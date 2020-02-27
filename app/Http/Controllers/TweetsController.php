@@ -74,16 +74,18 @@ class TweetsController extends Controller
   $tweet = $tweet->getTweet($tweet->id);
   // $comment = new Comment;
   // dd($tweet);
-  $comments = $comment->getComments($tweet->id); //tweet以外のデータをとる時には必要
-  $tweet->load('user', 'heart', 'comments');
+  $comments = $comment->getComments($tweet->id); 
+  // dd($comment);
+  $tweet->load('user', 'comments');
   // dd($tweet);
   $userAuth = \Auth::user();
   // $tweet->heart;
-  $tweet->load('heart');
+  $comment->load('hearts');
+  dd($comment);
 
-  $defaultCount = count($tweet->heart);
+  $defaultCount = count($comment->heart);
   // dd($defaultCount);
-  $defaultLiked = $tweet->heart->where('user_id', $userAuth->id)->first();
+  $defaultLiked = $comment->heart->where('user_id', $userAuth->id)->first();
   // dd($defaultLiked);
   if (is_countable($defaultLiked)) {
    if (count($defaultLiked) == 0) {

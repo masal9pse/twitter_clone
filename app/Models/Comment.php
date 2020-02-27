@@ -27,6 +27,11 @@ class Comment extends Model
   return $this->hasMany(\App\Models\Comment::class, 'tweet_id', 'id');
  }
 
+ public function hearts()
+ {
+  return $this->hasMany(\App\Models\Heart::class, 'comment_id', 'id');
+ }
+
  public function getComments(Int $tweet_id)
  {
   return $this->with('user')->where('tweet_id', $tweet_id)->get();

@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Heart extends Model
 {
   protected $fillable = [
-    'id', 'user_id', 'tweet_id'
+    'id', 'user_id', 'comment_id'
   ];
 
   // 受け取っている
-  public function tweet()
+  public function comment()
   {
-    return $this->belongsTo(Tweet::class, 'tweet_id', 'id');
+    return $this->belongsTo(Comment::class, 'comment_id', 'id');
   }
   public function user()
   {
