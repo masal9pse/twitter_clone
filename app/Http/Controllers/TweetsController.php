@@ -66,42 +66,17 @@ class TweetsController extends Controller
   * @param  int  $id
   * @return \Illuminate\Http\Response
   */
- // 恐らくここに返信に対してのいいねの処理を書けばいいはず
- // 引数にモデルを指定するのはつまり、newでインスタンスを作っていることと同じだった。
  public function show(Tweet $tweet, Comment $comment, Heart $heart, Reply $reply)
  {
   $tweet->load(['comments', 'comments.user', 'comments.hearts']);
-  // dd($tweet);
   $comments = $tweet->comments;
-  // dd($comments);
-  foreach($comments as $comment) {
-   $hearts = $comment->hearts;
-   // dd($hearts);
-   // \Debugbar::info($hearts);
-  }
-  // dd($tweet);
   $user = auth()->user();
-  // dd($user);
   $tweet = $tweet->getTweet($tweet->id);
-  // $comment = new Comment;
-  // dd($tweet);
   $comments = $comment->getComments($tweet->id); 
-  // dd($comment);
-  // $tweet->load('user', 'comments');
-  // dd($tweet);
   $userAuth = \Auth::user();
-  // dd($userAuth);
-  // $tweet->heat;
-  // $comment->load('hearts','user');
-  // dd($comment);
-  // $heart->load('comment','user');
-  // dd($heart);
-
-  // $defaultCount = count($tweet->comments->hearts);
   $defaultCount = count($comment->hearts);
   // dd($defaultCount);
   $defaultLiked = $comment->hearts->where('user_id', $userAuth->id)->first();
-  // dd($defaultLiked);
   if (is_countable($defaultLiked)) {
    if (count($defaultLiked) == 0) {
     $defaultLiked == false;
