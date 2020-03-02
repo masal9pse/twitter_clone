@@ -21,7 +21,7 @@ Route::get('/', 'TweetsController@all')->name('tweets.all');
 
 Route::group(['middleware' => 'auth'], function () {
 
-  // Route::get('/', 'TweetsController@index')->name('tweets.index');
+  Route::get('/index', 'TweetsController@index')->name('tweets.index');
 
   Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
 
