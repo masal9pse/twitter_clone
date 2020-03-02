@@ -151,4 +151,13 @@ class TweetsController extends Controller
 
   return back();
  }
+
+ public function all(Tweet $tweet)
+ {
+  $tweets = $tweet->all();
+  // dd($tweets);
+  return view('tweets.all',[
+   'tweets' => $tweets
+  ]);
+ }
 }

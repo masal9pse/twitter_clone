@@ -16,10 +16,12 @@
 
 Auth::routes();
 
+Route::get('/', 'TweetsController@all')->name('tweets.all');
+
 
 Route::group(['middleware' => 'auth'], function () {
 
-  Route::get('/', 'TweetsController@index')->name('tweets.index');
+  Route::get('/index', 'TweetsController@index')->name('tweets.index');
 
   Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
 
@@ -27,7 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
   
   Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
 
-  Route::resource('tweets', 'TweetsController', ['only' => ['index',   'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+  Route::resource('tweets', 'TweetsController', ['only' => ['create', 'store', 'show', 'edit', 'update', 'destroy']]);
 
   Route::resource('comments', 'CommentsController', ['only' => ['store']]);
   
